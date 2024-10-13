@@ -1,0 +1,5 @@
+black
+pygame
+PyOpenGL
+PyOpenGL_accelerate
+ruff
