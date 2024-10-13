@@ -1,6 +1,13 @@
 import pygame
 from pygame.locals import DOUBLEBUF, OPENGL
-from OpenGL.GL import glClear, GL_COLOR_BUFFER_BIT, GL_DEPTH_BUFFER_BIT, glTranslatef
+from OpenGL.GL import (
+    glClear,
+    GL_COLOR_BUFFER_BIT,
+    GL_DEPTH_BUFFER_BIT,
+    glOrtho,
+    glRotatef,
+    glTranslatef,
+)
 from OpenGL.GLU import gluPerspective
 from Mesh3D import Cube, Mesh3D
 
@@ -13,6 +20,7 @@ pygame.display.set_caption("OpenGL in Python")
 done = False
 white = pygame.Color(255, 255, 255)
 gluPerspective(30, (screen_width / screen_height), 0.1, 100.0)
+# glOrtho(-1, 1, -1, 1, 0.1, 100.0)
 glTranslatef(0.0, 0.0, -3)
 mesh = Cube()
 while not done:
@@ -20,7 +28,9 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+    glRotatef(5, 1, 0, 1)
     mesh.draw()
     pygame.display.flip()
+    pygame.time.wait(100)
 
 pygame.quit()
